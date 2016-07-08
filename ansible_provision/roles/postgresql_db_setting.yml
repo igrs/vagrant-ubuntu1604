@@ -1,0 +1,9 @@
+#
+# dependencies: [libraries postgresql]
+# setting_vars: [pg_db_name, pg_role_name, pg_role_password]
+#
+- name: ensure database is created
+  postgresql_db: name={{ pg_db_name }}
+
+- name: ensure user has access to database
+  postgresql_user: db={{ pg_db_name }} name={{ pg_role_name }} password={{ pg_role_password }} role_attr_flags=CREATEDB,LOGIN,REPLICATION

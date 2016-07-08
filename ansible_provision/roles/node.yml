@@ -1,0 +1,23 @@
+#
+# dependencies: [ndenv]
+# setting_vars: [home_dir, node_version, shell]
+#
+- name: install node with ndenv
+  shell: source {{ home_dir }}/.profile && ndenv install {{ node_version }}
+  args:
+     executable: /bin/{{ shell }}
+
+- name: set node version global
+  shell: source {{ home_dir }}/.profile && ndenv global {{ node_version }}
+  args:
+     executable: /bin/{{ shell }}
+
+- name: ndenv rehash
+  shell: source {{ home_dir }}/.profile && ndenv rehash
+  args:
+     executable: /bin/{{ shell }}
+
+- name: set npm progress false
+  shell: source {{ home_dir }}/.profile && npm set progress=false
+  args:
+     executable: /bin/{{ shell }}

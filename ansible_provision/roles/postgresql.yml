@@ -1,0 +1,44 @@
+#
+# dependencies: [libraries]
+# setting_vars: [pg_db_name, pg_role_name, pg_role_password, pg_version, shell]
+#
+- name: install postgresql latest apt-repository
+  shell: sh -c 'echo "deb http://apt.postgresql.org/pub/repos/apt/ `lsb_release -cs`-pgdg main" >> /etc/apt/sources.list.d/pgdg.list'
+  args:
+    executable: /bin/{{ shell }}
+
+- name: wget key
+  shell: wget --quiet -O - https://www.postgresql.org/media/keys/ACCC4CF8.asc | apt-key add -
+  args:
+    executable: /bin/{{ shell }}
+
+- name: ensure apt cache is up to date
+  apt: update_cache=yes
+
+- name: ensure packages are installed
+  apt: name={{ item }} state=latest
+  with_items:
+    - postgresql
+    - postgresql-contrib
+
+- name: ensure postgresql listen address
+  replace: >
+    dest=/etc/postgresql/{{ pg_version }}/main/postgresql.conf
+    regexp="^#listen_addresses = 'localhost'"
+    replace="listen_addresses = '*'"
+
+- name: default locale and timezone
+  replace: >
+    dest=/etc/postgresql/{{ pg_version }}/main/postgresql.conf
+    regexp="en_US.UTF-8"
+    replace="ja_JP.UTF-8"
+
+- name: local peer off on PostgreSQl
+  replace: >
+    dest=/etc/postgresql/{{ pg_version }}/main/pg_hba.conf
+    regexp="local +all +all +peer"
+    replace="local all all trust"
+
+# TODO add address to group vars
+- name: trust all address on PostgreSQL
+  lineinfile: dest=/etc/postgresql/{{ pg_version }}/main/pg_hba.conf line="host all all 0.0.0.0/0 trust"

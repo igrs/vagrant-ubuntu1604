@@ -1,0 +1,13 @@
+#
+# dependencies: [libraries, phpenv]
+# setting_vars: [home_dir, php_version, shell]
+#
+- name: install php with phpenv
+  shell: source {{ home_dir }}/.profile && phpenv install {{ php_version }}
+  args:
+     executable: /bin/{{ shell }}
+
+- name: set php version global
+  shell: source {{ home_dir }}/.profile && phpenv global {{ php_version }}
+  args:
+     executable: /bin/{{ shell }}

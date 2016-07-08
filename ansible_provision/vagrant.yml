@@ -1,0 +1,36 @@
+  #
+# example for elixir phoenix and letsencrypt
+#
+- hosts: vagrant
+  remote_user: ubuntu
+  gather_facts: no
+  pre_tasks:
+    - raw: sudo apt-get update -qq && sudo apt-get install -qq python2.7
+  tasks:
+    - include: roles/libraries.yml
+      become: yes
+      become_user: root
+    - include: roles/sys_locale_jp.yml
+      become: yes
+      become_user: root
+    - include: roles/sys_timezone_jp.yml
+      become: yes
+      become_user: root
+    - include: roles/postgresql.yml
+      become: yes
+      become_user: root
+    - include: roles/postgresql_db_setting.yml
+      become: yes
+      become_user: postgres
+    - include: roles/anyenv.yml
+    - include: roles/erlenv.yml
+    - include: roles/erlang.yml
+    - include: roles/exenv.yml
+    - include: roles/elixir.yml
+    - include: roles/ndenv.yml
+    - include: roles/node.yml
+    - include: roles/elixir_hex.yml
+    - include: roles/elixir_phoenix.yml
+    - include: roles/rbenv.yml
+    - include: roles/ruby.yml
+    - include: roles/letsencrypt.yml

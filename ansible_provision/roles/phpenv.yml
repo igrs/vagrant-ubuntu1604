@@ -1,0 +1,11 @@
+#
+# dependencies: [anyenv]
+# setting_vars: [home_dir, shell]
+#
+- name: install phpenv
+  shell: source {{ home_dir }}/.profile && anyenv install -s phpenv
+  args:
+     executable: /bin/{{ shell }}
+
+- name: git clone php-build plugin
+  git: repo=https://github.com/CHH/php-build.git dest={{ home_dir }}/.anyenv/envs/phpenv/php-build

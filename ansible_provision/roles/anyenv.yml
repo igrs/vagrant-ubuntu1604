@@ -1,0 +1,20 @@
+#
+# dependencies: [git]
+# setting_vars: [home_dir]
+#
+- name: git clone anyenv
+  git: repo=https://github.com/riywo/anyenv.git dest={{ home_dir }}/.anyenv
+
+- name: git clone anyenv-update plugin
+  git: repo=https://github.com/znz/anyenv-update.git dest={{ home_dir }}/.anyenv/plugins/anyenv-update
+
+- name: git clone anyenv-git plugin
+  git: repo=https://github.com/znz/anyenv-git.git dest={{ home_dir }}/.anyenv/plugins/anyenv-git
+
+- name: setting profile
+  lineinfile:
+    dest: "{{ home_dir }}/.profile"
+    line: "{{ item }}"
+  with_items:
+    - 'export PATH="$HOME/.anyenv/bin:$PATH"'
+    - 'eval "$(anyenv init -)"'

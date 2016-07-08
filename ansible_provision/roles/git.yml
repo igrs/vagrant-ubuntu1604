@@ -1,0 +1,12 @@
+#
+# dependencies: []
+# setting_vars: []
+#
+- name: add git repositories
+  apt_repository: repo=git-core/ppa
+
+- name: update package list
+  apt: update_cache=yes
+
+- name: install git
+  apt: name=git state=latest

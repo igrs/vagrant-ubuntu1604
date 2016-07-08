@@ -1,0 +1,27 @@
+#
+# dependencies: [libraries, erlenv]
+# setting_vars: [erlang_version, install_user, homedir, shel]
+#
+- name: download erlang source
+  get_url: url=http://www.erlang.org/download/otp_src_{{ erlang_version }}.tar.gz dest=/tmp/otp_src_{{ erlang_version }}.tar.gz
+  sudo_user: "{{ install_user }}"
+
+- name: extract erlang source
+  shell: cd /tmp/ && tar xfvz otp_src_{{ erlang_version }}.tar.gz
+  sudo_user: "{{ install_user }}"
+
+- name: install erlang
+  shell: cd /tmp/otp_src_{{ erlang_version }} && export ERL_TOP=`pwd` && ./configure --prefix={{ home_dir }}/.anyenv/envs/erlenv/releases/otp_src_{{ erlang_version }} && make && make install
+  sudo_user: "{{ install_user }}"
+
+- name: set erlang version global
+  shell: source {{ home_dir }}/.profile && erlenv global otp_src_{{ erlang_version }}
+  sudo_user: "{{ install_user }}"
+  args:
+     executable: /bin/{{ shell }}
+
+- name: erlenv rehash
+  shell: source {{ home_dir }}/.profile && erlenv rehash
+  sudo_user: "{{ install_user }}"
+  args:
+     executable: /bin/{{ shell }}

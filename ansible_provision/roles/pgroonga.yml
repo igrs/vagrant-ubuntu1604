@@ -1,0 +1,8 @@
+- name: add pgroonga repositories
+  apt_repository: repo=ppa:groonga/ppa
+
+- name: ensure apt cache is up to date
+  apt: update_cache=yes
+
+- name: ensure pgroonga are installed
+  apt: name=postgresql-9.4-pgroonga state=latest

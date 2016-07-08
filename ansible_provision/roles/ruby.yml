@@ -1,0 +1,13 @@
+#
+# dependencies: [libraries, rbenv]
+# setting_vars: [home_dir, ruby_version, shell]
+#
+- name: install ruby with rbenv
+  shell: source {{ home_dir }}/.profile && rbenv install {{ ruby_version }}
+  args:
+     executable: /bin/{{ shell }}
+
+- name: set ruby version global
+  shell: source {{ home_dir }}/.profile && rbenv global {{ ruby_version }}
+  args:
+     executable: /bin/{{ shell }}

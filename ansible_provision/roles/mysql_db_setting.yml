@@ -1,0 +1,9 @@
+#
+# dependencies: [libraries mysql]
+# setting_vars: [mysql_vdb_name, mysql_user_name, mysql_user_pass]
+#
+- name: create wpadmin user at mysql
+  mysql_user: name={{ mysql_user_name }} password={{ mysql_user_pass }} priv=*.*:ALL state=present
+
+- name: create database
+  mysql_db: name={{ mysql_db_name }} state=present

@@ -1,0 +1,6 @@
+#
+# dependencies: [git]
+# setting_vars: [home_dir]
+#
+- name: git clone certbot(letsencrypt)
+  git: repo=https://github.com/certbot/certbot dest={{ home_dir }}/certbot

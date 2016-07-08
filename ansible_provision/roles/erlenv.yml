@@ -1,0 +1,8 @@
+#
+# dependencies: [anyenv]
+# setting_vars: [homedir, shell]
+#
+- name: install erlenv
+  shell: source {{ home_dir }}/.profile && anyenv install -s erlenv
+  args:
+     executable: /bin/{{ shell }}

@@ -1,0 +1,12 @@
+#
+# dependencies: []
+# setting_vars: []
+#
+- name: add nginx dev repositories
+  apt_repository: repo=ppa:nginx/development
+
+- name: ensure apt cache is up to date
+  apt: update_cache=yes
+
+- name: ensure nginx are installed
+  apt: name=nginx state=latest

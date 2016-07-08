@@ -1,0 +1,8 @@
+#
+# dependencies: [anyenv]
+# setting_vars: [homedir, shell]
+#
+- name: install ndenv
+  shell: source {{ home_dir }}/.profile && anyenv install -s ndenv
+  args:
+     executable: /bin/{{ shell }}

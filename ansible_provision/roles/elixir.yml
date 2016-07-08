@@ -1,0 +1,15 @@
+#
+# dependencies: [libraries, exenv]
+# setting_vars: [elixir_version, install_user, homedir, shell]
+#
+- name: install elixir with exenv
+  shell: source {{ home_dir }}/.profile && exenv install {{ elixir_version }}
+  sudo_user: "{{ install_user }}"
+  args:
+    executable: /bin/{{ shell }}
+
+- name: set elixir version global
+  shell: source {{ home_dir }}/.profile && exenv global {{ elixir_version }}
+  sudo_user: "{{ install_user }}"
+  args:
+    executable: /bin/{{ shell }}

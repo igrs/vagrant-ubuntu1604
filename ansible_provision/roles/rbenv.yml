@@ -1,0 +1,15 @@
+#
+# dependencies: [anyenv]
+# setting_vars: [home_dir, shell]
+#
+- name: install rbenv
+  shell: source {{ home_dir }}/.profile && anyenv install -s rbenv
+  args:
+     executable: /bin/{{ shell }}
+
+- name: install rbenv-plugins
+  git: repo=https://github.com/{{ item.name }} dest={{ home_dir }}/.anyenv/envs/rbenv/plugins/{{ item.path }}
+  with_items:
+    - { name: 'sstephenson/rbenv-default-gems.git', path: 'rbenv-default-gems' }
+    - { name: 'sstephenson/rbenv-gem-rehash.git', path: 'rbenv-gem-rehash' }
+  sudo_user: "{{ install_user }}"

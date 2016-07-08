@@ -1,0 +1,6 @@
+#
+# dependencies: []
+# setting_vars: []
+#
+- name: update locale to jp
+  shell: update-locale LANGUAGE=ja_JP.utf-8 LANG=ja_JP.utf-8 LC_ALL=ja_JP.utf-8

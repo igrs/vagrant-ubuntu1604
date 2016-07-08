@@ -1,0 +1,8 @@
+#
+# dependencies: [elixir]
+# setting_vars: [home_dir, shell]
+#
+- name: install hex
+  shell: source {{ home_dir }}/.profile && mix local.hex --force
+  args:
+    executable: /bin/{{ shell }}

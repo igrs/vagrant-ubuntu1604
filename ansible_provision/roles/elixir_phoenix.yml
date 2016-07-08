@@ -1,0 +1,8 @@
+#
+# dependencies: [elixir, elixir_hex]
+# setting_vars: [home_dir, phoenix_version, shell]
+#
+- name: install phoenix
+  shell: source {{ home_dir }}/.profile && mix archive.install https://github.com/phoenixframework/archives/raw/master/phoenix_new.ez --force
+  args:
+    executable: /bin/{{ shell }}

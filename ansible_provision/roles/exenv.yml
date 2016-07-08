@@ -1,0 +1,8 @@
+#
+# dependencies: [anyenv]
+# setting_vars: [homedir, shell]
+#
+- name: install exenv
+  shell: source {{ home_dir }}/.profile && anyenv install -s exenv
+  args:
+     executable: /bin/{{ shell }}

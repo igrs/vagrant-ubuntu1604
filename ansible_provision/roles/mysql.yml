@@ -1,0 +1,19 @@
+#
+# dependencies: [libraries]
+# setting_vars: [mysql_vesrion, mysql_user_name, mysql_user_pass]
+#
+- name: add apt repository
+  apt_repository: repo=ppa:ondrej/mysql-{{ mysql_version }}
+
+- name: ensure apt cache is up to date
+  apt: update_cache=yes
+
+- name: ensure mysql are installed
+  apt: name={{ item }} state=latest
+  with_items:
+    - mysql-server
+    - mysql-client
+    - mysql-common
+
+- name: start mysql
+  service: name=mysql state=started enabled=yes

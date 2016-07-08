@@ -1,0 +1,41 @@
+#
+# dependencies: []
+# setting_vars: []
+#
+- name: update package list
+  apt: update_cache=yes
+
+- name: install libraries
+  apt: name={{ item }} state=latest
+  with_items:
+    - zlib1g-dev
+    - build-essential
+    - libssl-dev
+    - libreadline-dev
+    - libyaml-dev
+    - libxml2-dev
+    - libxslt1-dev
+    - libcurl4-openssl-dev
+    - python-software-properties
+    #- libpq-dev -> ibghc-postgresql-libpq-dev?
+    - libffi-dev
+    - language-pack-ja
+    - sysv-rc-conf
+    - pwgen
+    - imagemagick
+    - libmagickwand-dev
+    - libmysqlclient-dev
+    - unixodbc
+    - inotify-tools
+    - libmcrypt-dev
+    - libjpeg-dev
+    - libfreetype6-dev
+    - libgmp-dev
+    - libpspell-dev
+    - libicu-dev
+    - librecode-dev
+    - libtidy-dev
+    - autoconf
+    - python-dev
+    - python-mysqldb
+    - python-psycopg2

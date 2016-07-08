@@ -1,0 +1,6 @@
+#
+# dependencies: []
+# setting_vars: []
+#
+- name: set timezone to jp
+  shell: ln -sf /usr/share/zoneinfo/Asia/Tokyo /etc/localtime
