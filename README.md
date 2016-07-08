@@ -21,6 +21,7 @@ $ vagrant up
 - PostgreSql (default: 9.5)
 - Ruby       (default: 2.3.1)
 - Node.js    (default: 6.3.0)
+- Certbot    (from github.com to /home/ubuntu/)
 
 You can change version at ansible vars.
 
