@@ -11,7 +11,7 @@ vbox: [ubuntu/xenial64](https://atlas.hashicorp.com/ubuntu/boxes/xenial64)
 ## Installation
 ```sh
 $ git clone git@github.com:igrs/vagrant-ubuntu1604.git
-$ cd vagrant-ubuntu1604.git
+$ cd vagrant-ubuntu1604
 $ vagrant up
 ```
 
