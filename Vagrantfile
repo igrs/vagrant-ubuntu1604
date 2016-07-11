@@ -6,10 +6,14 @@ Vagrant.configure("2") do |config|
   config.vm.box_url = "https://atlas.hashicorp.com/ubuntu/boxes/xenial64"
   config.vm.box_check_update = true
   config.vm.network "private_network", ip: "10.10.10.30"
-  config.vm.synced_folder "apps", "/var/apps",
-    type: "rsync",
-    rsync__args: ['--verbose', '--archive', '-z', '--copy-links'],
-    rsync__exclude: ['.DS_Store', '.git/', 'deps/', '_build/', 'node_modules/', 'priv/static/']
+
+  #config.vm.synced_folder "apps", "/var/apps",
+  #  type: "rsync",
+  #  rsync__args: ['--verbose', '--archive', '-z', '--copy-links'],
+  #  rsync__exclude: ['.DS_Store', '.git/', 'deps/', '_build/', 'node_modules/', 'priv/static/']
+
+  config.vm.synced_folder '.', '/vagrant', nfs: true
+  config.vm.synced_folder './apps', '/var/apps', nfs: true, mount_options: ['dmode=775', 'fmode=775']
 
   config.vm.provider "virtualbox" do |vb|
     vb.gui = false
